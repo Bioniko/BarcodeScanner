@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="position: relative;" color="mycolor">
+    <div [hidden]="scanActive" class="bk-btn" (click)="Back()" style="position: absolute;top: 22%;left: 2%;z-index: 1;">
+      <div class="bk-btn-triangle"></div>
+      <div class="bk-btn-bar"></div>
+    </div>
+    <ion-title style="text-align: center;padding-top: 1%;">Registrar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content
+  [fullscreen]="true"
+  [style.--background]="scanActive?'#00000000':'#ffffff'"
+>
+  <div style="padding: 10% 10% 3% 10%;" [hidden]="scanActive">
+    <label for="fname" class="nombre" >Código de Barra</label>
+    <ion-grid style="padding: 0%;">
+      <ion-row>
+        <ion-col size="10" style="padding: 0%;">
+          <input type="text" name="firstname" class="caja" id="codigobar">
+        </ion-col>
+        <ion-col size="2" style="text-align: right;padding: 5px 0px 5px 5px;">
+          <div>
+            <div (click)="Buscar()" class="btnVerde" style="padding: 35% 0%;background-color: #42a5f5;"><i class="fa-solid fa-magnifying-glass"></i></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <label for="lname" class="nombre">Nombre del Producto</label>
+    <input type="text" name="lastname" class="caja" id="pro_nombre">
+
+    <label for="lname" class="nombre">Precio de Venta</label>
+    <input type="number" name="lastname" class="caja" id="pro_precio">
+
+    <select name="proveedor" class="caja" id="proveedor">
+      <option disabled selected value="">Seleccione Proveedor</option>
+      <option *ngFor="let proveedor of prov" value="{{proveedor.prov_id}}">{{proveedor.prov_empresa}}</option>
+    </select>
+
+    <label for="lname" class="nombre">Descripción</label>
+    <input type="text" name="lastname" class="caja" id="pro_descripcion">
+  </div>
+  <div style="padding: 0% 10% 5% 10%;">
+    <ion-button expand="full" (click)="startScanner()" [hidden]="scanActive" style="height: 6vh;background-color: #42a5f5;" color="#42a5f5">Escanear Código</ion-button>
+  </div>
+  <ion-row class="scan-button" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding" style="padding: 0% 10% 5% 10%;">
+      <ion-button expand="full" (click)="stopScanner()" style="height: 6vh;background-color: #42a5f5;" color="#42a5f5">Dejar de Escanear</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="scan-box" [hidden]="!scanActive"></div>
+  <div class="divGuardar" [hidden]="scanActive">
+    <div class="btnVerde" (click)="GuardarProducto()">Guardar Producto</div>
+  </div>
+</ion-content>

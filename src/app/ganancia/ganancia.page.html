@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="position: relative;" color="mycolor">
+    <div class="bk-btn" (click)="Back()" style="position: absolute;top: 22%;left: 2%;z-index: 1;">
+      <div class="bk-btn-triangle"></div>
+      <div class="bk-btn-bar"></div>
+    </div>
+    <ion-title style="text-align: center;padding-top: 1%;">Producto Vendido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding-top: 65%;">
+  </div>
+  <div style="width: 100%;position:fixed;top: 7%;background-color: #fff;z-index: 1;box-shadow: 0px -12px 60px rgb(0 0 0 / 16%);">
+    <div style="padding: 5% 10% 3% 10%;">
+      <div style="text-align: center"> 
+        <h1>Ventas del dia</h1>
+        <h1 style="color: #28bebd;font-size: 50px;">{{this.venta}}</h1>
+      </div>
+    </div>
+    <hr class="new4" style="margin: 0% 2%;border-top: 1px solid #c3c3c3;">
+    <div style="padding: 5% 3% 4% 3%">
+      <ion-row style="padding: 0%;">
+        <ion-col size="3" style="padding: 0%;">
+            <div style="text-align: center;font-weight: bold;color: #42a5f5">Cantidad</div>
+            <ion-row style="padding: 2% 0% 2% 0%;">
+              <ion-col size="3" style="padding: 0%;text-align: left;">
+            </ion-col>
+              <ion-col size="6" style="padding: 0%;text-align: center;">
+              </ion-col>
+              <ion-col size="3" style="padding: 0%;text-align: right;">
+              </ion-col>
+            </ion-row>
+        </ion-col>
+        <ion-col size="6" style="padding: 0% 0% 0% 0%;">
+          <div style="text-align: center;font-weight: bold;color: #42a5f5">Producto</div>
+        </ion-col>
+        <ion-col size="3" style="padding: 0% 0% 0% 0%">
+          <div style="text-align: center;font-weight: bold;color: #42a5f5">Precio</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div>
+    
+    
+    <div *ngFor="let producto of prod" style="padding: 2% 0% 0% 0%">
+      <ion-row style="padding: 0%;">
+        <ion-col size="3" style="padding: 0%;">
+            <ion-row style="padding: 2% 0% 2% 0%;">
+              <ion-col size="3" style="padding: 0%;text-align: left;">
+            </ion-col>
+              <ion-col size="6" style="padding: 0%;text-align: center;">
+                  <input value="{{producto.Cantidad}}" style="background-color: #fff;border: #fff;width: 88%;text-align: center;" readonly>
+              </ion-col>
+              <ion-col size="3" style="padding: 0%;text-align: right;">
+              </ion-col>
+            </ion-row>
+        </ion-col>
+        <ion-col size="6" style="padding: 0% 0% 0% 0%;">
+          <div style="text-align: center">{{producto.Producto}}</div>
+        </ion-col>
+        <ion-col size="3" style="padding: 0% 0% 0% 0%">
+            <div style="text-align: center;">{{producto.Precio}}</div>
+        </ion-col>
+      </ion-row>
+      <hr class="new4" style="margin: 2% 2%;border-top: 1px solid #c3c3c3;">
+    </div>
+
+
+</div>
+</ion-content>

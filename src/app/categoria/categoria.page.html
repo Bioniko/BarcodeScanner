@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="position: relative;" color="mycolor">
+    <div class="bk-btn" (click)="Back()" style="position: absolute;top: 22%;left: 2%;z-index: 1;">
+      <div class="bk-btn-triangle"></div>
+      <div class="bk-btn-bar"></div>
+    </div>
+    <ion-title style="text-align: center;padding-top: 1%;">Registrar Proveedor</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid style="margin: 5% 10% 0% 10%;">
+    <ion-list>
+      <label for="lname" class="nombre">Editar Proveedor</label>
+      <ion-item>
+        <ion-select interface="popover" name="proveedor" (ionChange)="TraerDatosProveedor()" class="caja" id="proveedor" placeholder="Seleccione Proveedor" required="true">
+          <ion-select-option *ngFor="let proveedor of prov" value="{{proveedor.prov_id}}">{{proveedor.prov_empresa}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+  <div style="margin: 0% 25% 0% 25%;">
+    <div (click)="Limpiar()" class="btnVerde">Limpiar</div>
+  </div>
+  <hr class="new4" style="margin: 2% 7%;border-top: 1px solid #c3c3c3;">
+  <div style="padding: 10% 10% 3% 10%;">
+    <input type="text" name="prov_id" class="caja" id="prov_id" hidden>
+    <label for="lname" class="nombre">Nombre de la Empresa</label>
+    <input type="text" name="lastname" class="caja" id="prov_empresa">
+
+    <label for="lname" class="nombre">Nombre Representante</label>
+    <input type="text" name="lastname" class="caja" id="prov_nombre">
+
+    <label for="lname" class="nombre">Telefono</label>
+    <input type="number" name="lastname" class="caja" id="prov_telefono">
+
+    <label for="lname" class="nombre">Descripción</label>
+    <input type="textarea" name="lastname" class="caja" id="prov_descripcion">
+  </div>
+  <div class="divGuardar">
+    <div (click)="btnGuardar()" class="btnVerde">Guardar Proveedor</div>
+  </div>
+</ion-content>
+

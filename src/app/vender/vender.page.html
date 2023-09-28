@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="position: relative;" color="mycolor">
+    <div [hidden]="scanActive" class="bk-btn" (click)="Back()" style="position: absolute;top: 22%;left: 2%;z-index: 1;">
+      <div class="bk-btn-triangle"></div>
+      <div class="bk-btn-bar"></div>
+    </div>
+    <ion-title style="text-align: center;padding-top: 1%;" color="#28bebd">Cobrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content
+  [fullscreen]="true"
+  [style.--background]="scanActive?'#00000000':'#ffffff'"
+>
+  <div>
+    <div style="padding: 5% 10% 3% 10%;" [hidden]="scanActive">
+      <label for="fname" class="nombre" >Codigo de Barra</label>
+      <ion-grid style="padding: 0%;">
+        <ion-row>
+          <ion-col size="10" style="padding: 0%;">
+            <input type="text" name="firstname" class="caja">
+          </ion-col>
+          <ion-col size="2" style="text-align: right;padding: 5px 0px 5px 5px;">
+            <div>
+              <div class="btnVerde" style="padding: 35% 0%;background-color: #3880ff;"><i class="fa-solid fa-magnifying-glass"></i></div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div style="width: 100%;position:fixed;top: 7%;background-color: #fff;z-index: 1;box-shadow: 0px -12px 60px rgb(0 0 0 / 16%);">
+    <div style="padding: 5% 10% 3% 10%;" [hidden]="scanActive">
+      <label for="fname" class="nombre" >Codigo de Barra</label>
+      <ion-grid style="padding: 0%;">
+        <ion-row>
+          <ion-col size="10" style="padding: 0%;">
+            <input type="text" name="firstname" class="caja" id="codigobar">
+          </ion-col>
+          <ion-col size="2" style="text-align: right;padding: 5px 0px 5px 5px;">
+            <div>
+              <div (click)="Buscar()" class="btnVerde" style="padding: 35% 0%;background-color: #42a5f5;"><i class="fa-solid fa-magnifying-glass"></i></div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div class="redondo" (click)="startScanner()" [hidden]="scanActive">
+    <img src="./assets/icon/barcode-scan.png">
+  </div> 
+ 
+
+  <div id="prueba" [hidden]="scanActive">
+      <div *ngFor="let producto of prod" style="padding: 5% 3% 0% 3%" id="{{producto.pro_id}}">
+        <ion-row style="padding: 0%;">
+          <ion-col size="3" style="padding: 0%;">
+              <div style="text-align: center;">Cantidad</div>
+              <ion-row style="padding: 2% 0% 2% 0%;">
+                <ion-col size="3" (click)="Menos(producto.pro_id)" style="padding: 0%;text-align: left;">
+                  <div style="color: #42a5f5;font-size: 20px;"><i class="fa-sharp fa-solid fa-circle-minus"></i></div>
+              </ion-col>
+                <ion-col size="6" style="padding: 0%;text-align: center;">
+                    <input id="cantidad{{producto.pro_id}}" value="1" style="background-color: #fff;border: #fff;width: 88%;text-align: center;" readonly>
+                </ion-col>
+                <ion-col size="3" (click)="Mas(producto.pro_id)" style="padding: 0%;text-align: right;">
+                    <div style="color: #42a5f5;font-size: 20px;"><i class="fa-sharp fa-solid fa-circle-plus"></i></div>
+                </ion-col>
+              </ion-row>
+          </ion-col>
+          <ion-col size="6" style="padding: 4% 0% 0% 5%;">
+            <div style="font-weight: bold;">{{producto.pro_nombre}}</div>
+          </ion-col>
+          <ion-col size="2" style="padding: 4% 0% 0% 0%">
+              <div style="text-align: center;">{{producto.subtotal}}</div>
+          </ion-col>
+          <ion-col size="1" style="padding: 4% 0% 0% 0%;">
+              <div (click)="EliminarElemento(producto.pro_id)" style="background-color: #fff;"><i class="fa-sharp fa-solid fa-trash" style="color: #f00;font-size: 20px;"></i></div>
+          </ion-col>
+        </ion-row>
+        <hr class="new4" style="margin: 2% 7%;border-top: 1px solid #c3c3c3;">
+      </div>
+  </div>
+
+  
+  <div style="padding-top: 55%;"></div>
+
+  <ion-row class="scan-button" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding" style="padding: 0% 10% 5% 10%;">
+      <ion-button expand="full" (click)="stopScanner()" style="height: 6vh;background-color: #42a5f5;" color="#42a5f5">Dejar de Escanear</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="scan-box" [hidden]="!scanActive"></div>
+  <div class="divGuardar" [hidden]="scanActive" style="padding: 0% 10% 5% 10%;">
+    <ion-row>
+      <ion-col size="9" style="padding: 0%;text-align: left;">
+        <h1 style="padding-top: 4%;">Total a Pagar: </h1>
+      </ion-col>
+      <ion-col size="3" style="text-align: right;padding: 5px 0px 5px 5px;">
+        <h1><input id="total" style="color: #28bebd ;font-size: 37px;background-color: #fff;border: #fff;" value="{{total}}" readonly></h1>
+      </ion-col>
+    </ion-row>
+    <div class="btnVerde" (click)="btnVender()">Vender Producto</div>
+  </div>
+</ion-content>
